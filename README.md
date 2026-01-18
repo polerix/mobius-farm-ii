@@ -1,4 +1,4 @@
-# MÖBIUS MUSHROOM DEFRAG
+# MÖBIUS MUSHROOM FARM
 
 An ASCII-based farming & tower-defense hybrid game running entirely in the browser.
 
