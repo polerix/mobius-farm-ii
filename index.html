@@ -735,6 +735,21 @@ function makeGrid() {
 let tick=0, running=false, gameOver=false, paused=false;
 const farm = [makeGrid(), makeGrid()];
 
+// Dirty-cell cache: skip DOM work for unchanged farm cells
+// cellKey packs (type*12 + stage*2 + lit) into a small int; -1 = needs rebuild
+let cellEl  = null; // cellEl[s][y*GRID_W+x] = SVG <g> in DOM, or null
+let cellKey = null; // cellKey[s][y*GRID_W+x] = last-rendered packed key, or -1
+function initCellCache() {
+  // Remove any elements still in the DOM from a previous game
+  if(cellEl){
+    for(let s=0;s<2;s++) for(let i=0;i<GRID_H*GRID_W;i++)
+      if(cellEl[s][i]){ cellEl[s][i].remove(); cellEl[s][i]=null; }
+  }
+  const n=GRID_H*GRID_W;
+  cellEl  = [new Array(n).fill(null), new Array(n).fill(null)];
+  cellKey = [new Int16Array(n).fill(-1), new Int16Array(n).fill(-1)];
+}
+
 const player = {
   x: (GRID_W/2)|0, aimFace:0,
   energy:50, shield:100, score:0, fireCD:0,
@@ -941,6 +956,7 @@ function seedFarm() {
 function reset() {
   tick=0; gameOver=false; paused=false;
   farm[0]=makeGrid(); farm[1]=makeGrid();
+  initCellCache();
   centipedes.length=0; pyramids.length=0;
   tractors.length=0; shots.length=0; enemyShots.length=0;
   scorePops.length=0;
@@ -1451,27 +1467,44 @@ function update() {
 //  RENDER
 // ════════════════════════════════════════════════════════════
 function renderFarm() {
-  clearGroup('L-mush-top');
-  clearGroup('L-mush-bot');
+  // Dirty-cell rendering: only touch DOM nodes for cells that changed state.
+  // Cache key = type*12 + stage*2 + lit (max 71, fits Int16).
   for(let s=0;s<2;s++){
+    const lg=layer('mush',s);
+    const cel=cellEl[s], cky=cellKey[s];
     for(let y=0;y<GRID_H;y++){
       for(let x=0;x<GRID_W;x++){
+        const idx=y*GRID_W+x;
         const c=farm[s][y][x];
-        if(c.type===EMPTY||c.type===SPORE) continue; // spores invisible, skip DOM node
-        const [sx,sy]=toSVG(s,x,y);
+
+        // --- cell should be invisible ---
+        if(c.type===EMPTY||c.type===SPORE){
+          if(cel[idx]){ cel[idx].remove(); cel[idx]=null; cky[idx]=-1; }
+          continue;
+        }
+
+        // --- cell is visible: check if anything changed ---
         const lit=isSunlit(s,x,y,tick);
+        const key=c.type*12+c.stage*2+(lit?1:0);
+        if(cky[idx]===key) continue; // unchanged — skip entirely
+
+        // --- build replacement sprite ---
         let sp;
         switch(c.type){
-          case SPORE: sp=makeSpore(); break;
-          case SEED:  sp=makeSeed();  break;
+          case SEED:  sp=makeSeed(); break;
           case MUSH:  sp=makeMush(c.stage,lit); break;
           case BURST: sp=makeBurst(); break;
-          case ACID:  sp=makeAcid();  break;
+          case ACID:  sp=makeAcid(); break;
+          default: continue;
         }
-        if(sp){
-          if(!lit&&c.type!==BURST&&c.type!==MUSH) sp.setAttribute('opacity','.35');
-          addToLayer('mush',s,sp,sx,sy);
-        }
+        if(!lit&&c.type!==BURST&&c.type!==MUSH) sp.setAttribute('opacity','.35');
+        const [sx,sy]=toSVG(s,x,y);
+        place(sp,sx,sy);
+
+        // swap into DOM
+        if(cel[idx]) lg.replaceChild(sp,cel[idx]);
+        else         lg.appendChild(sp);
+        cel[idx]=sp; cky[idx]=key;
       }
     }
   }
