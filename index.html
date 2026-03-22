@@ -437,7 +437,7 @@ const SUN_TICKS = 5400;
 const ENERGY_MAX=99, SHIELD_MAX=100, FIRE_COST=1, TRACTOR_COST=25;
 const SHIELD_REGEN=0.10, ENERGY_REGEN=0.02;
 const CENTI_LEN=12, CENTI_STEP=3;
-const FPS=30;
+const FPS=20;
 
 // Power-up durations in ticks
 const PU_TICKS = 600;  // 20 seconds
@@ -1359,7 +1359,7 @@ function updateTractors() {
 //  SPAWN
 // ════════════════════════════════════════════════════════════
 function spawnCentipede(surface) {
-  if(centipedes.length>=6) return;
+  if(centipedes.length>=3) return;
   const s=surface!==undefined?surface:randi(2);
   const startY=s===0?0:GRID_H-1;
   const startX=randi(GRID_W);
@@ -1369,7 +1369,7 @@ function spawnCentipede(surface) {
   centipedes.push({surface:s,segments:segs,stepTick:0,dir:rand()<.5?1:-1,grace:30});
 }
 function spawnPyramid() {
-  if(pyramids.length>=10) return;
+  if(pyramids.length>=2) return;
   const s=randi(2);
   pyramids.push({surface:s,x:randi(GRID_W),y:randi(GRID_H),
     dx:rand()<.5?-1:1,dy:rand()<.5?-1:1,t:0,size:1});
@@ -1457,7 +1457,7 @@ function renderFarm() {
     for(let y=0;y<GRID_H;y++){
       for(let x=0;x<GRID_W;x++){
         const c=farm[s][y][x];
-        if(c.type===EMPTY) continue;
+        if(c.type===EMPTY||c.type===SPORE) continue; // spores invisible, skip DOM node
         const [sx,sy]=toSVG(s,x,y);
         const lit=isSunlit(s,x,y,tick);
         let sp;
@@ -1677,8 +1677,11 @@ let acc=0,lastT=0;
 function frame(now){
   const dt=now-lastT; lastT=now;
   acc+=dt;
-  while(acc>=STEP){update();acc-=STEP;}
-  render();
+  let ticked=false;
+  while(acc>=STEP){update();acc-=STEP;ticked=true;}
+  // Skip DOM work entirely when game state hasn't changed —
+  // CSS animations (glows, eye colours) keep running regardless.
+  if(ticked) render();
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(t=>{ lastT=t; requestAnimationFrame(frame); });
