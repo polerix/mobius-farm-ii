@@ -87,6 +87,11 @@
 <text id="hud-aim" x="525" y="16" font-family="monospace" font-size="11" font-weight="bold" fill="#00ccff">▲ UPPER</text>
 <text id="hud-streak" x="620" y="16" font-family="monospace" font-size="10" fill="#ff8800">✕0</text>
 <text id="hud-density" x="668" y="16" font-family="monospace" font-size="8" fill="#445533">FARM░░░░░</text>
+<!-- Pause button -->
+<g id="btn-pause" style="cursor:pointer" opacity=".85">
+  <rect x="754" y="2" width="40" height="20" rx="4" fill="#001a00" stroke="#00ff88" stroke-width="1"/>
+  <text id="btn-pause-icon" x="774" y="16" text-anchor="middle" font-family="monospace" font-size="13" fill="#00ff88">⏸</text>
+</g>
 
 <!-- HUD PU row -->
 <rect x="0" y="24" width="800" height="20" fill="rgba(0,0,0,.9)"/>
@@ -1361,7 +1366,7 @@ function update(){
   }
 
   if(gameOver){if(consume('KeyR'))reset();return;}
-  if(paused){if(consume('KeyP'))paused=false;return;}
+  if(paused){if(consume('KeyP')){paused=false;$('btn-pause-icon').textContent='⏸';}return;}
   if(levelWaiting||inTransition){keysFired.clear();return;}
 
   tick++;
@@ -1374,6 +1379,7 @@ function update(){
   if(consume('KeyR'))tryTractor();
   if(consume('KeyE'))tryDrone();
   if(consume('KeyP'))paused=true;
+  $('btn-pause-icon').textContent=paused?'▶':'⏸';
   if(player.fireCD>0)player.fireCD--;
 
   // ── Mouse horizontal ──
@@ -1628,6 +1634,17 @@ function startGame(){
 
 $('btn-start').addEventListener('click',startGame);
 $('btn-start').addEventListener('touchend',e=>{e.preventDefault();startGame();});
+$('btn-pause').addEventListener('click',()=>{
+  if(!running||gameOver)return;
+  paused=!paused;
+  $('btn-pause-icon').textContent=paused?'▶':'⏸';
+});
+$('btn-pause').addEventListener('touchend',e=>{
+  e.preventDefault();
+  if(!running||gameOver)return;
+  paused=!paused;
+  $('btn-pause-icon').textContent=paused?'▶':'⏸';
+});
 window.addEventListener('keydown',e=>{
   if(e.code==='Enter'&&!running){try{getACtx();}catch{}startGame();}
 });
