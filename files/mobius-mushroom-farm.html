@@ -40,6 +40,13 @@
   .level-in{animation:level-in .5s cubic-bezier(.2,1.4,.4,1) forwards}
 
   @keyframes wheel-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+  @keyframes mobius-twist {
+    0% { transform: perspective(800px) scale(1) rotateX(0deg) rotateZ(0deg); }
+    50% { transform: perspective(800px) scale(0.6) rotateX(90deg) rotateZ(180deg); }
+    100% { transform: perspective(800px) scale(1) rotateX(180deg) rotateZ(360deg); }
+  }
+  .mobius-twist { animation: mobius-twist 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; }
 </style>
 </head>
 <body>
@@ -79,37 +86,37 @@
 <g id="g-hud-top-left">
   <rect id="pu-bg-auto"   x="22" y="48" width="48" height="12" rx="2" fill="#002a00"/>
   <rect id="pu-bar-auto"  x="23" y="49" width="0"  height="10" rx="1" fill="#00ff44" opacity=".7"/>
-  <text id="pu-txt-auto"  x="46" y="57" text-anchor="middle" font-family="Mushroom, monospace" font-size="7" fill="#44aa44">AUTO</text>
+  <text id="pu-txt-auto"  x="46" y="57" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" fill="#44aa44">AUTO</text>
   <rect id="pu-bg-dshot"  x="74" y="48" width="48" height="12" rx="2" fill="#2a1500"/>
   <rect id="pu-bar-dshot" x="75" y="49" width="0"  height="10" rx="1" fill="#ff8800" opacity=".7"/>
-  <text id="pu-txt-dshot" x="98" y="57" text-anchor="middle" font-family="Mushroom, monospace" font-size="7" fill="#aa6622">2×SH</text>
+  <text id="pu-txt-dshot" x="98" y="57" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" fill="#aa6622">2×SH</text>
 </g>
 <!-- Center top: more power-ups + aim + streak + density -->
 <g id="g-hud-top-center">
   <rect id="pu-bg-dual"   x="240" y="6" width="56" height="12" rx="2" fill="#2a0000"/>
   <rect id="pu-bar-dual"  x="241" y="7" width="0"  height="10" rx="1" fill="#ff2200" opacity=".7"/>
-  <text id="pu-txt-dual"  x="268" y="15" text-anchor="middle" font-family="Mushroom, monospace" font-size="7" fill="#aa2200">DUAL</text>
+  <text id="pu-txt-dual"  x="268" y="15" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" fill="#aa2200">DUAL</text>
   <rect id="pu-bg-tshld"  x="302" y="6" width="60" height="12" rx="2" fill="#00001a"/>
   <rect id="pu-bar-tshld" x="303" y="7" width="0"  height="10" rx="1" fill="#4488ff" opacity=".7"/>
-  <text id="pu-txt-tshld" x="332" y="15" text-anchor="middle" font-family="Mushroom, monospace" font-size="7" fill="#2244aa">TSHLD</text>
-  <text id="hud-aim" x="400" y="15" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" font-weight="bold" fill="#00ccff">▲ UPPER</text>
-  <text id="hud-hi" x="470" y="15" font-family="Mushroom, monospace" font-size="8" fill="#ff8800">HI 000000</text>
-  <text id="hud-streak" x="540" y="15" font-family="Mushroom, monospace" font-size="8" fill="#ff8800">✕0</text>
+  <text id="pu-txt-tshld" x="332" y="15" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" fill="#2244aa">TSHLD</text>
+  <text id="hud-aim" x="400" y="15" text-anchor="middle" font-family="Mushroom, monospace" font-size="12" font-weight="bold" fill="#00ccff">▲ UPPER</text>
+  <text id="hud-hi" x="470" y="15" font-family="Mushroom, monospace" font-size="10" fill="#ff8800">HI 000000</text>
+  <text id="hud-streak" x="540" y="15" font-family="Mushroom, monospace" font-size="10" fill="#ff8800">✕0</text>
 </g>
 <!-- Right top bar: level + pods -->
 <g id="g-hud-top-right">
-  <text id="hud-level" x="600" y="57" font-family="Mushroom, monospace" font-size="9" font-weight="bold" fill="#ffff00">LVL 1</text>
-  <text id="hud-pods"  x="660" y="57" font-family="Mushroom, monospace" font-size="7" fill="#888">PODS:[--] 0/4</text>
+  <text id="hud-level" x="600" y="57" font-family="Mushroom, monospace" font-size="12" font-weight="bold" fill="#ffff00">LVL 1</text>
+  <text id="hud-pods"  x="660" y="57" font-family="Mushroom, monospace" font-size="9" fill="#888">PODS:[--] 0/4</text>
 </g>
 
 <!-- ══ HUD BOTTOM — fits inside frame bottom sections ═══════ -->
 <!-- Bottom-left tab: SCORE -->
-<text id="hud-score" x="190" y="530" text-anchor="middle" font-family="Mushroom, monospace" font-size="10" font-weight="bold" fill="#ffff00">000000</text>
+<text id="hud-score" x="190" y="530" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" font-weight="bold" fill="#ffff00">000000</text>
 <!-- Bottom-center loops: Energy + Shield -->
-<text x="320" y="528" font-family="Mushroom, monospace" font-size="7" fill="#00cc88">⚡</text>
+<text x="320" y="528" font-family="Mushroom, monospace" font-size="9" fill="#00cc88">⚡</text>
 <rect x="332" y="522" width="60" height="8" fill="none" stroke="#00aa66" stroke-width="1" rx="2"/>
 <rect id="hud-e-bar" x="333" y="523" width="58" height="6" fill="#007744" rx="1"/>
-<text x="410" y="528" font-family="Mushroom, monospace" font-size="7" fill="#4488ff">🛡</text>
+<text x="410" y="528" font-family="Mushroom, monospace" font-size="9" fill="#4488ff">🛡</text>
 <rect x="422" y="522" width="60" height="8" fill="none" stroke="#2255bb" stroke-width="1" rx="2"/>
 <rect id="hud-s-bar" x="423" y="523" width="58" height="6" fill="#2244aa" rx="1"/>
 <!-- Bottom-right tab: Pause -->
@@ -119,7 +126,7 @@
   <path id="btn-pause-icon" d="M643 523h2v10h-2zm5 0h2v10h-2z" fill="#00ff88"/>
 </g>
 <!-- Density (subtle, bottom area) -->
-<text id="hud-density" x="500" y="540" font-family="Mushroom, monospace" font-size="6" fill="#334422">FARM░░░░░</text>
+<text id="hud-density" x="500" y="540" font-family="Mushroom, monospace" font-size="8" fill="#334422">FARM░░░░░</text>
 
 <!-- ══ GAME FIELD (g-field) ══════════════════════════════════ -->
 <g id="g-field">
@@ -150,8 +157,8 @@
   <rect x="0" y="289" width="800" height="3" fill="#2e2218" rx="1"/>
 
   <!-- Space labels -->
-  <text x="6" y="40"  font-family="Mushroom, monospace" font-size="7" fill="#1a2e10" letter-spacing="3">SUNWARD FACE · OPEN SPACE ↑</text>
-  <text x="6" y="520" font-family="Mushroom, monospace" font-size="7" fill="#0c1826" letter-spacing="3">NIGHT FACE · OPEN SPACE ↓</text>
+  <text x="6" y="40"  font-family="Mushroom, monospace" font-size="9" fill="#1a2e10" letter-spacing="3">SUNWARD FACE · OPEN SPACE ↑</text>
+  <text x="6" y="520" font-family="Mushroom, monospace" font-size="9" fill="#0c1826" letter-spacing="3">NIGHT FACE · OPEN SPACE ↓</text>
 
   <!-- ── TRAIN ── -->
   <!-- Anchor: translate(trainX, 280) -->
@@ -210,7 +217,7 @@
 <!-- end g-field -->
 
 <!-- ══ HUD BOTTOM — controls hint (very subtle behind frame) ═ -->
-<text id="hud-controls" x="400" y="542" text-anchor="middle" font-family="Mushroom, monospace" font-size="5" fill="#1a1a1a" letter-spacing=".3">
+<text id="hud-controls" x="400" y="542" text-anchor="middle" font-family="Mushroom, monospace" font-size="6" fill="#1a1a1a" letter-spacing=".3">
   ◄► MOVE · SPACE FLIP · ENTER FIRE · R TRACTOR · ESC PAUSE
 </text>
 
@@ -227,37 +234,37 @@
 <!-- Level announce -->
 <g id="g-level-announce" display="none">
   <rect x="240" y="238" width="320" height="68" rx="8" fill="#000" stroke="#00ff88" stroke-width="2"/>
-  <text id="lvl-title" x="400" y="264" text-anchor="middle" font-family="Mushroom, monospace" font-size="16" font-weight="bold" fill="#ffff00"/>
-  <text id="lvl-sub"   x="400" y="294" text-anchor="middle" font-family="Mushroom, monospace" font-size="11" fill="#00ff88"/>
+  <text id="lvl-title" x="400" y="264" text-anchor="middle" font-family="Mushroom, monospace" font-size="21" font-weight="bold" fill="#ffff00"/>
+  <text id="lvl-sub"   x="400" y="294" text-anchor="middle" font-family="Mushroom, monospace" font-size="14" fill="#00ff88"/>
 </g>
 
 <!-- Initials entry -->
 <g id="g-initials" display="none">
   <rect x="200" y="210" width="400" height="124" rx="8" fill="#000" stroke="#ffff00" stroke-width="2"/>
-  <text x="400" y="240" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" font-weight="bold" fill="#ffff00">NEW HIGH SCORE!</text>
-  <text x="400" y="258" text-anchor="middle" font-family="Mushroom, monospace" font-size="10" fill="#888">ENTER YOUR INITIALS</text>
+  <text x="400" y="240" text-anchor="middle" font-family="Mushroom, monospace" font-size="17" font-weight="bold" fill="#ffff00">NEW HIGH SCORE!</text>
+  <text x="400" y="258" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" fill="#888">ENTER YOUR INITIALS</text>
   <!-- 3 letter boxes -->
   <g id="g-init-boxes">
     <rect id="ibox-0" x="310" y="270" width="40" height="40" rx="4" fill="#111" stroke="#555" stroke-width="1.5"/>
     <rect id="ibox-1" x="380" y="270" width="40" height="40" rx="4" fill="#111" stroke="#555" stroke-width="1.5"/>
     <rect id="ibox-2" x="450" y="270" width="40" height="40" rx="4" fill="#111" stroke="#555" stroke-width="1.5"/>
-    <text id="ichar-0" x="330" y="302" text-anchor="middle" font-family="Mushroom, monospace" font-size="24" font-weight="bold" fill="#fff">S</text>
-    <text id="ichar-1" x="400" y="302" text-anchor="middle" font-family="Mushroom, monospace" font-size="24" font-weight="bold" fill="#fff">Y</text>
-    <text id="ichar-2" x="470" y="302" text-anchor="middle" font-family="Mushroom, monospace" font-size="24" font-weight="bold" fill="#fff">S</text>
+    <text id="ichar-0" x="330" y="302" text-anchor="middle" font-family="Mushroom, monospace" font-size="32" font-weight="bold" fill="#fff">S</text>
+    <text id="ichar-1" x="400" y="302" text-anchor="middle" font-family="Mushroom, monospace" font-size="32" font-weight="bold" fill="#fff">Y</text>
+    <text id="ichar-2" x="470" y="302" text-anchor="middle" font-family="Mushroom, monospace" font-size="32" font-weight="bold" fill="#fff">S</text>
   </g>
-  <text x="400" y="326" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" fill="#555" class="blink">▲▼ CHANGE · ► NEXT · ENTER CONFIRM</text>
+  <text x="400" y="326" text-anchor="middle" font-family="Mushroom, monospace" font-size="12" fill="#555" class="blink">▲▼ CHANGE · ► NEXT · ENTER CONFIRM</text>
 </g>
 
 <!-- Mobile tractor button -->
 <g id="g-tractor-btn" display="none">
   <circle cx="743" cy="493" r="34" fill="#0d2600" stroke="#44aa00" stroke-width="2.5" opacity=".9"/>
-  <text x="743" y="488" text-anchor="middle" font-family="Mushroom, monospace" font-size="16" fill="#88ff22">🚜</text>
-  <text x="743" y="504" text-anchor="middle" font-family="Mushroom, monospace" font-size="7" font-weight="bold" fill="#66cc00">TRACTOR</text>
+  <text x="743" y="488" text-anchor="middle" font-family="Mushroom, monospace" font-size="21" fill="#88ff22">🚜</text>
+  <text x="743" y="504" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" font-weight="bold" fill="#66cc00">TRACTOR</text>
 </g>
 <g id="g-drone-btn" display="none">
   <circle cx="743" cy="420" r="28" fill="#001a2a" stroke="#0066aa" stroke-width="2" opacity=".9"/>
-  <text x="743" y="414" text-anchor="middle" font-family="Mushroom, monospace" font-size="14" fill="#44aaff">✈</text>
-  <text x="743" y="428" text-anchor="middle" font-family="Mushroom, monospace" font-size="7" font-weight="bold" fill="#2288cc">DRONE</text>
+  <text x="743" y="414" text-anchor="middle" font-family="Mushroom, monospace" font-size="18" fill="#44aaff">✈</text>
+  <text x="743" y="428" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" font-weight="bold" fill="#2288cc">DRONE</text>
 </g>
 
 <!-- ══ SETTINGS & FULLSCREEN BUTTONS ═══════════════════════ -->
@@ -273,19 +280,19 @@
 <g id="g-settings-panel" display="none">
   <rect x="0" y="0" width="800" height="544" fill="#000" opacity="0.75"/>
   <rect x="250" y="160" width="300" height="200" rx="6" fill="#001100" stroke="#00ff88" stroke-width="2" opacity="0.95"/>
-  <text x="400" y="195" text-anchor="middle" font-family="Mushroom, monospace" font-size="14" font-weight="bold" fill="#00ff88" letter-spacing="2">SYSTEM SETTINGS</text>
+  <text x="400" y="195" text-anchor="middle" font-family="Mushroom, monospace" font-size="18" font-weight="bold" fill="#00ff88" letter-spacing="2">SYSTEM SETTINGS</text>
   
   <rect id="btn-set-sound" x="300" y="215" width="200" height="26" rx="4" fill="#002211" stroke="#005522" stroke-width="1" style="cursor:pointer"/>
-  <text id="txt-set-sound" x="400" y="233" text-anchor="middle" font-family="Mushroom, monospace" font-size="12" fill="#00ff88" pointer-events="none">SOUND: ON</text>
+  <text id="txt-set-sound" x="400" y="233" text-anchor="middle" font-family="Mushroom, monospace" font-size="16" fill="#00ff88" pointer-events="none">SOUND: ON</text>
   
   <rect id="btn-set-music" x="300" y="255" width="200" height="26" rx="4" fill="#002211" stroke="#005522" stroke-width="1" style="cursor:pointer"/>
-  <text id="txt-set-music" x="400" y="273" text-anchor="middle" font-family="Mushroom, monospace" font-size="12" fill="#00ff88" pointer-events="none">MUSIC: ON</text>
+  <text id="txt-set-music" x="400" y="273" text-anchor="middle" font-family="Mushroom, monospace" font-size="16" fill="#00ff88" pointer-events="none">MUSIC: ON</text>
 
   <rect id="btn-set-fx" x="300" y="295" width="200" height="26" rx="4" fill="#002211" stroke="#005522" stroke-width="1" style="cursor:pointer"/>
-  <text id="txt-set-fx" x="400" y="313" text-anchor="middle" font-family="Mushroom, monospace" font-size="12" fill="#00ff88" pointer-events="none">FX (SHAKE): MEDIUM</text>
+  <text id="txt-set-fx" x="400" y="313" text-anchor="middle" font-family="Mushroom, monospace" font-size="16" fill="#00ff88" pointer-events="none">FX (SHAKE): MEDIUM</text>
   
   <rect id="btn-set-close" x="350" y="335" width="100" height="18" rx="2" fill="#00331a" style="cursor:pointer"/>
-  <text x="400" y="348" text-anchor="middle" font-family="Mushroom, monospace" font-size="10" fill="#aaffcc" pointer-events="none">CLOSE</text>
+  <text x="400" y="348" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" fill="#aaffcc" pointer-events="none">CLOSE</text>
 </g>
 
 <!-- ══ IN-GAME HUD FRAME (overlay on top of everything) ══════ -->
@@ -300,7 +307,7 @@
   <!-- HUD Frame overlay (decorative, on top of background) -->
   <image href="SVG/hud-frame-2.svg" x="0" y="0" width="800" height="544" preserveAspectRatio="none" pointer-events="none"/>
 
-  <text x="400" y="40" text-anchor="middle" font-family="Mushroom, monospace" font-size="9" fill="#003322" letter-spacing="10">~ SUPREME EDITION ~</text>
+  <text x="400" y="40" text-anchor="middle" font-family="Mushroom, monospace" font-size="12" fill="#003322" letter-spacing="10">~ SUPREME EDITION ~</text>
 
   <!-- Perimeter centipede (JS-animated, rendered BEFORE logo so it passes behind it) -->
   <g id="centi-parade">
@@ -323,7 +330,7 @@
   <!-- ── PANEL 1: HIGH SCORES ── -->
   <g id="panel-scores" class="panel-fade">
     <line x1="30" y1="145" x2="770" y2="145" stroke="#003322" stroke-width="1"/>
-    <text x="400" y="172" text-anchor="middle" font-family="Mushroom, monospace" font-size="14" font-weight="bold" fill="#ffff00" letter-spacing="6">HIGH SCORES</text>
+    <text x="400" y="172" text-anchor="middle" font-family="Mushroom, monospace" font-size="18" font-weight="bold" fill="#ffff00" letter-spacing="6">HIGH SCORES</text>
     <line x1="200" y1="182" x2="600" y2="182" stroke="#333300" stroke-width="1"/>
     <g id="g-score-rows"/>
   </g>
@@ -331,17 +338,17 @@
   <!-- ── PANEL 2: INSTRUCTIONS ── -->
   <g id="panel-instructions" class="panel-fade" style="opacity:0;pointer-events:none">
     <line x1="30" y1="145" x2="770" y2="145" stroke="#003322" stroke-width="1"/>
-    <text x="400" y="172" text-anchor="middle" font-family="Mushroom, monospace" font-size="10" fill="#888" letter-spacing="4">KILL STREAKS UNLOCK POWER-UPS</text>
+    <text x="400" y="172" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" fill="#888" letter-spacing="4">KILL STREAKS UNLOCK POWER-UPS</text>
     <line x1="200" y1="182" x2="600" y2="182" stroke="#1a1a00" stroke-width="1"/>
-    <g font-family="Mushroom, monospace" font-size="12">
+    <g font-family="Mushroom, monospace" font-size="16">
       <text x="400" y="218" text-anchor="middle" fill="#44ff44" font-weight="bold">✦ 3×  AUTO-AIM ✦</text>
       <text x="400" y="248" text-anchor="middle" fill="#ffaa22" font-weight="bold">✦ 6×  DOUBLE SHOT ✦</text>
       <text x="400" y="278" text-anchor="middle" fill="#ff4422" font-weight="bold">✦ 10× DUAL CANNON ✦</text>
       <text x="400" y="308" text-anchor="middle" fill="#4488ff" font-weight="bold">✦ 15× TRACTOR SHIELD ✦</text>
     </g>
     <line x1="200" y1="330" x2="600" y2="330" stroke="#003322" stroke-width="1"/>
-    <text x="400" y="352" text-anchor="middle" font-family="Mushroom, monospace" font-size="10" fill="#888" letter-spacing="4">CONTROLS</text>
-    <g font-family="Mushroom, monospace" font-size="10" fill="#668866">
+    <text x="400" y="352" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" fill="#888" letter-spacing="4">CONTROLS</text>
+    <g font-family="Mushroom, monospace" font-size="13" fill="#668866">
       <text x="400" y="380" text-anchor="middle">◄ ► / MOUSE ─── MOVE TRAIN</text>
       <text x="400" y="400" text-anchor="middle">SPACE / SCROLL ─── FLIP CANNON</text>
       <text x="400" y="420" text-anchor="middle">ENTER / L-CLICK ─── FIRE</text>
@@ -353,9 +360,9 @@
   <!-- ── PANEL 3: START ── -->
   <g id="panel-start" class="panel-fade" style="opacity:0;pointer-events:none">
     <line x1="30" y1="145" x2="770" y2="145" stroke="#003322" stroke-width="1"/>
-    <text x="400" y="280" text-anchor="middle" font-family="Mushroom, monospace" font-size="10" fill="#555">── MÖBIUS TOPOLOGICAL DEFENCE SYSTEM v5 ──</text>
-    <text x="400" y="330" text-anchor="middle" font-family="Mushroom, monospace" font-size="20" font-weight="bold" fill="#00ff88" letter-spacing="5" class="blink">▸ PRESS ENTER TO START ◂</text>
-    <text x="400" y="365" text-anchor="middle" font-family="Mushroom, monospace" font-size="11" fill="#224422" class="blink" style="animation-delay:.4s">INSERT COIN  ·  INSERT COIN  ·  INSERT COIN</text>
+    <text x="400" y="280" text-anchor="middle" font-family="Mushroom, monospace" font-size="13" fill="#555">── MÖBIUS TOPOLOGICAL DEFENCE SYSTEM v5 ──</text>
+    <text x="400" y="330" text-anchor="middle" font-family="Mushroom, monospace" font-size="27" font-weight="bold" fill="#00ff88" letter-spacing="5" class="blink">▸ PRESS ENTER TO START ◂</text>
+    <text x="400" y="365" text-anchor="middle" font-family="Mushroom, monospace" font-size="14" fill="#224422" class="blink" style="animation-delay:.4s">INSERT COIN  ·  INSERT COIN  ·  INSERT COIN</text>
   </g>
 
   <rect x="0" y="0" width="800" height="544" fill="transparent" id="btn-start" style="cursor:pointer"/>
@@ -461,13 +468,13 @@ function preloadAssets(){
   for(const[name,def]of Object.entries(ASSET_DEFS)){
     const img=new Image();
     img.onload=()=>{loadedAssets[name]=def;};
-    img.src=`${name}.svg`;
+    img.src=`SVG/${name}.svg`;
   }
 }
 function assetImage(name){
   if(!loadedAssets[name])return null;
   const d=loadedAssets[name];
-  return E('image',{href:`${name}.svg`,x:d.ox,y:d.oy,width:d.w,height:d.h});
+  return E('image',{href:`SVG/${name}.svg`,x:d.ox,y:d.oy,width:d.w,height:d.h});
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1025,53 +1032,40 @@ function updatePods(){
 function startMobiusTransition(){
   if(inTransition)return;
   inTransition=true;levelWaiting=true;
-  const fieldEl=$('g-field'),CX=400,CY=280;
+  const fieldEl=$('g-field');
   const flashEl=$('transition-flash');
-  let frame=0,midDone=false;
-  const TOTAL=70;
+  
+  // Trigger CSS twist animation
+  fieldEl.style.transformOrigin = '400px 280px';
+  fieldEl.classList.add('mobius-twist');
+  
+  // Flash fade sequence
+  flashEl.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+  flashEl.setAttribute('opacity', '0.4');
 
-  function anim(){
-    frame++;
-    const t=frame/TOTAL;
-    let sx,sy;
+  // Mid-point (flip contents)
+  setTimeout(()=>{
+    level++;podsThisLevel=0;
+    centipedes.length=0;pyramids.length=0;shots.length=0;enemyShots.length=0;
+    nextCenti=tick+60;nextPyramid=tick+30;
+    player.energy=clamp(player.energy+25,0,ENERGY_MAX);
+    // Announce
+    $('lvl-title').textContent=`LEVEL ${level}`;
+    $('lvl-sub').textContent=`TARGET: ${getPodsRequired(level)} PODS`;
+    $('g-level-announce').removeAttribute('display');
+    $('g-level-announce').classList.add('level-in');
+    
+    // Flash out
+    flashEl.setAttribute('opacity','0');
+  }, 600);
 
-    if(t<0.45){
-      const p=t/0.45;sx=1-p;sy=1+p*.18;
-      flashEl.setAttribute('opacity',String(p*.12));
-    }else if(t<0.55){
-      sx=0;sy=1.18;
-      const flsh=(1-Math.abs((t-.5)/.05))*.9;
-      flashEl.setAttribute('opacity',String(flsh));
-      if(!midDone){
-        midDone=true;
-        // Load next level
-        level++;podsThisLevel=0;
-        centipedes.length=0;pyramids.length=0;shots.length=0;enemyShots.length=0;
-        nextCenti=tick+60;nextPyramid=tick+30;
-        player.energy=clamp(player.energy+25,0,ENERGY_MAX);
-        // Announce
-        $('lvl-title').textContent=`LEVEL ${level}`;
-        $('lvl-sub').textContent=`TARGET: ${getPodsRequired(level)} PODS`;
-        $('g-level-announce').removeAttribute('display');
-        $('g-level-announce').classList.add('level-in');
-        setTimeout(()=>{$('g-level-announce').setAttribute('display','none');$('g-level-announce').classList.remove('level-in');},2200);
-      }
-    }else{
-      const p=(t-.55)/.45;sx=p;sy=1+(1-p)*.18;
-      flashEl.setAttribute('opacity',String((1-p)*.12));
-    }
-
-    fieldEl.setAttribute('transform',
-      `translate(${CX},${CY}) scale(${sx.toFixed(4)},${sy.toFixed(4)}) translate(${-CX},${-CY})`);
-
-    if(frame<TOTAL)requestAnimationFrame(anim);
-    else{
-      fieldEl.removeAttribute('transform');
-      flashEl.setAttribute('opacity','0');
-      inTransition=false;levelWaiting=false;
-    }
-  }
-  requestAnimationFrame(anim);
+  // End animation
+  setTimeout(()=>{
+    $('g-level-announce').setAttribute('display','none');
+    $('g-level-announce').classList.remove('level-in');
+    fieldEl.classList.remove('mobius-twist');
+    inTransition=false;levelWaiting=false;
+  }, 1200);
 }
 
 // ════════════════════════════════════════════════════════════
