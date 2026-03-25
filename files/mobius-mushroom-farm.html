@@ -371,7 +371,7 @@
 <!-- audio mp3 placeholders -->
 <foreignObject width="0" height="0">
   <div xmlns="http://www.w3.org/1999/xhtml">
-    <audio id="aud-title" src="title.mp3" loop preload="auto"/>
+    <audio id="aud-title" src="Audio/title.mp3" loop preload="auto"/>
     <audio id="aud-game-even" src="Audio/Psytrain Through the Fungal Expanse-1.mp3" loop preload="auto"/>
     <audio id="aud-game-odd"  src="Audio/Psytrain Through the Fungal Expanse-2.mp3" loop preload="auto"/>
   </div>
@@ -1396,6 +1396,18 @@ function spawnPyramid(){
   pyramids.push({surface:s,x:randi(GRID_W),y:randi(GRID_H),dx:rand()<.5?-1:1,dy:rand()<.5?-1:1,t:0,size:1});
 }
 
+function togglePauseGame() {
+  if(!running||gameOver)return;
+  paused = !paused;
+  $('btn-pause-icon').setAttribute('d', paused ? 'M643 523l8 5l-8 5z' : 'M643 523h2v10h-2zm5 0h2v10h-2z');
+  const trk = level%2===0 ? 'aud-game-even' : 'aud-game-odd';
+  const a = $(trk);
+  if(a) {
+    if(paused) a.pause();
+    else if(stateMusic) a.play().catch(()=>{});
+  }
+}
+
 // ════════════════════════════════════════════════════════════
 //  MAIN UPDATE
 // ════════════════════════════════════════════════════════════
@@ -1423,19 +1435,6 @@ function update(){
     return;
   }
 
-function togglePauseGame() {
-  if(!running||gameOver)return;
-  paused = !paused;
-  $('btn-pause-icon').setAttribute('d', paused ? 'M643 523l8 5l-8 5z' : 'M643 523h2v10h-2zm5 0h2v10h-2z');
-  const trk = level%2===0 ? 'aud-game-even' : 'aud-game-odd';
-  const a = $(trk);
-  if(a) {
-    if(paused) a.pause();
-    else if(stateMusic) a.play().catch(()=>{});
-  }
-}
-
-function frame(){
   if(gameOver){if(consume('KeyR'))reset();return;}
   if(paused){if(consume('Escape')||consume('KeyP')){togglePauseGame();}return;}
   if(levelWaiting||inTransition){keysFired.clear();return;}
