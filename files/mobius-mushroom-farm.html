@@ -73,42 +73,51 @@
     fill="none"/>
 </defs>
 
-<!-- ══ HUD TOP (outside g-field) ════════════════════════════ -->
-<rect x="0" y="0" width="800" height="24" fill="rgba(0,0,0,.97)"/>
-<text id="hud-score" x="8" y="16" font-family="monospace" font-size="13" font-weight="bold" fill="#ffff00">SCORE 000000</text>
-<text id="hud-hi" x="196" y="16" font-family="monospace" font-size="10" fill="#ff8800">HI 000000</text>
-<text x="318" y="16" font-family="monospace" font-size="9" fill="#00cc88">⚡</text>
-<rect x="331" y="6" width="78" height="11" fill="none" stroke="#00aa66" stroke-width="1" rx="2"/>
-<rect id="hud-e-bar" x="332" y="7" width="40" height="9" fill="#007744" rx="1"/>
-<text x="421" y="16" font-family="monospace" font-size="9" fill="#4488ff">🛡</text>
-<rect x="434" y="6" width="78" height="11" fill="none" stroke="#2255bb" stroke-width="1" rx="2"/>
-<rect id="hud-s-bar" x="435" y="7" width="78" height="9" fill="#2244aa" rx="1"/>
-<text id="hud-aim" x="525" y="16" font-family="monospace" font-size="11" font-weight="bold" fill="#00ccff">▲ UPPER</text>
-<text id="hud-streak" x="620" y="16" font-family="monospace" font-size="10" fill="#ff8800">✕0</text>
-<text id="hud-density" x="668" y="16" font-family="monospace" font-size="8" fill="#445533">FARM░░░░░</text>
-<!-- Pause button -->
-<g id="btn-pause" style="cursor:pointer" opacity=".85">
-  <rect x="754" y="2" width="40" height="20" rx="4" fill="#001a00" stroke="#00ff88" stroke-width="1"/>
-  <text id="btn-pause-icon" x="774" y="16" text-anchor="middle" font-family="monospace" font-size="13" fill="#00ff88">⏸</text>
+<!-- ══ HUD TOP — fits inside frame top bars ════════════════ -->
+<!-- Left top bar: power-ups -->
+<g id="g-hud-top-left">
+  <rect id="pu-bg-auto"   x="22" y="48" width="48" height="12" rx="2" fill="#002a00"/>
+  <rect id="pu-bar-auto"  x="23" y="49" width="0"  height="10" rx="1" fill="#00ff44" opacity=".7"/>
+  <text id="pu-txt-auto"  x="46" y="57" text-anchor="middle" font-family="monospace" font-size="7" fill="#44aa44">AUTO</text>
+  <rect id="pu-bg-dshot"  x="74" y="48" width="48" height="12" rx="2" fill="#2a1500"/>
+  <rect id="pu-bar-dshot" x="75" y="49" width="0"  height="10" rx="1" fill="#ff8800" opacity=".7"/>
+  <text id="pu-txt-dshot" x="98" y="57" text-anchor="middle" font-family="monospace" font-size="7" fill="#aa6622">2×SH</text>
+</g>
+<!-- Center top: more power-ups + aim + streak + density -->
+<g id="g-hud-top-center">
+  <rect id="pu-bg-dual"   x="240" y="6" width="56" height="12" rx="2" fill="#2a0000"/>
+  <rect id="pu-bar-dual"  x="241" y="7" width="0"  height="10" rx="1" fill="#ff2200" opacity=".7"/>
+  <text id="pu-txt-dual"  x="268" y="15" text-anchor="middle" font-family="monospace" font-size="7" fill="#aa2200">DUAL</text>
+  <rect id="pu-bg-tshld"  x="302" y="6" width="60" height="12" rx="2" fill="#00001a"/>
+  <rect id="pu-bar-tshld" x="303" y="7" width="0"  height="10" rx="1" fill="#4488ff" opacity=".7"/>
+  <text id="pu-txt-tshld" x="332" y="15" text-anchor="middle" font-family="monospace" font-size="7" fill="#2244aa">TSHLD</text>
+  <text id="hud-aim" x="400" y="15" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#00ccff">▲ UPPER</text>
+  <text id="hud-hi" x="470" y="15" font-family="monospace" font-size="8" fill="#ff8800">HI 000000</text>
+  <text id="hud-streak" x="540" y="15" font-family="monospace" font-size="8" fill="#ff8800">✕0</text>
+</g>
+<!-- Right top bar: level + pods -->
+<g id="g-hud-top-right">
+  <text id="hud-level" x="600" y="57" font-family="monospace" font-size="9" font-weight="bold" fill="#ffff00">LVL 1</text>
+  <text id="hud-pods"  x="660" y="57" font-family="monospace" font-size="7" fill="#888">PODS:[--] 0/4</text>
 </g>
 
-<!-- HUD PU row -->
-<rect x="0" y="24" width="800" height="20" fill="rgba(0,0,0,.9)"/>
-<rect id="pu-bg-auto"   x="  6" y="25" width="78" height="17" rx="3" fill="#002a00"/>
-<rect id="pu-bar-auto"  x="  7" y="26" width=" 0" height="15" rx="2" fill="#00ff44" opacity=".7"/>
-<text id="pu-txt-auto"  x=" 45" y="38" text-anchor="middle" font-family="monospace" font-size="9" fill="#44aa44">AUTO-AIM</text>
-<rect id="pu-bg-dshot"  x=" 90" y="25" width="78" height="17" rx="3" fill="#2a1500"/>
-<rect id="pu-bar-dshot" x=" 91" y="26" width=" 0" height="15" rx="2" fill="#ff8800" opacity=".7"/>
-<text id="pu-txt-dshot" x="129" y="38" text-anchor="middle" font-family="monospace" font-size="9" fill="#aa6622">2× SHOT</text>
-<rect id="pu-bg-dual"   x="174" y="25" width="78" height="17" rx="3" fill="#2a0000"/>
-<rect id="pu-bar-dual"  x="175" y="26" width=" 0" height="15" rx="2" fill="#ff2200" opacity=".7"/>
-<text id="pu-txt-dual"  x="213" y="38" text-anchor="middle" font-family="monospace" font-size="9" fill="#aa2200">DUAL GUN</text>
-<rect id="pu-bg-tshld"  x="258" y="25" width="96" height="17" rx="3" fill="#00001a"/>
-<rect id="pu-bar-tshld" x="259" y="26" width="  0" height="15" rx="2" fill="#4488ff" opacity=".7"/>
-<text id="pu-txt-tshld" x="306" y="38" text-anchor="middle" font-family="monospace" font-size="9" fill="#2244aa">TRK SHIELD</text>
-<!-- Level / pods -->
-<text id="hud-level" x="366" y="38" font-family="monospace" font-size="11" font-weight="bold" fill="#ffff00">LVL 1</text>
-<text id="hud-pods"  x="424" y="38" font-family="monospace" font-size="9" fill="#888">PODS:[-----] 0/4</text>
+<!-- ══ HUD BOTTOM — fits inside frame bottom sections ═══════ -->
+<!-- Bottom-left tab: SCORE -->
+<text id="hud-score" x="190" y="530" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#ffff00">000000</text>
+<!-- Bottom-center loops: Energy + Shield -->
+<text x="320" y="528" font-family="monospace" font-size="7" fill="#00cc88">⚡</text>
+<rect x="332" y="522" width="60" height="8" fill="none" stroke="#00aa66" stroke-width="1" rx="2"/>
+<rect id="hud-e-bar" x="333" y="523" width="58" height="6" fill="#007744" rx="1"/>
+<text x="410" y="528" font-family="monospace" font-size="7" fill="#4488ff">🛡</text>
+<rect x="422" y="522" width="60" height="8" fill="none" stroke="#2255bb" stroke-width="1" rx="2"/>
+<rect id="hud-s-bar" x="423" y="523" width="58" height="6" fill="#2244aa" rx="1"/>
+<!-- Bottom-right tab: Pause -->
+<g id="btn-pause" style="cursor:pointer" opacity=".85">
+  <rect x="630" y="520" width="34" height="16" rx="3" fill="#001a00" stroke="#00ff88" stroke-width="1"/>
+  <text id="btn-pause-icon" x="647" y="532" text-anchor="middle" font-family="monospace" font-size="11" fill="#00ff88">⏸</text>
+</g>
+<!-- Density (subtle, bottom area) -->
+<text id="hud-density" x="500" y="540" font-family="monospace" font-size="6" fill="#334422">FARM░░░░░</text>
 
 <!-- ══ GAME FIELD (g-field) ══════════════════════════════════ -->
 <g id="g-field">
@@ -146,7 +155,7 @@
   <!-- Anchor: translate(trainX, 280) -->
   <g id="g-train">
     <!-- Chassis (replaced by train.svg if present) -->
-    <image id="img-train" href="train.svg" x="-55" y="-18" width="110" height="36" visibility="hidden"/>
+    <image id="img-train" href="SVG/train.svg" x="-55" y="-18" width="110" height="36" visibility="hidden"/>
     <g id="g-train-proc">
       <rect x="-47" y="-12" width="94" height="22" rx="4" fill="#181818" stroke="#303030" stroke-width="1.5"/>
       <rect x="-40" y="-8" width="16" height="12" rx="2" fill="#0b1808"/>
@@ -179,7 +188,7 @@
     <circle cx="0" cy="-15" r="8.5" fill="#222" stroke="#444" stroke-width="1.5"/>
     <!-- Primary cannon (g-cannon rotates around 0,-15) -->
     <g id="g-cannon">
-      <image id="img-cannon" href="cannon.svg" x="-9" y="-42" width="18" height="28" visibility="hidden"/>
+      <image id="img-cannon" href="SVG/cannon.svg" x="-9" y="-42" width="18" height="28" visibility="hidden"/>
       <g id="g-cannon-proc">
         <rect x="-3.5" y="-35" width="7" height="22" rx="3" fill="#484848" stroke="#606060" stroke-width=".8"/>
         <rect x="-5" y="-38" width="10" height="5" rx="2" fill="#383838" stroke="#525252" stroke-width=".8"/>
@@ -198,10 +207,9 @@
 </g>
 <!-- end g-field -->
 
-<!-- ══ HUD BOTTOM (outside g-field) ════════════════════════ -->
-<rect x="0" y="516" width="800" height="24" fill="rgba(0,0,0,.95)"/>
-<text id="hud-controls" x="370" y="530" text-anchor="middle" font-family="monospace" font-size="8" fill="#2a2a2a" letter-spacing=".5">
-  ◄ ► MOVE  ·  SPACE FLIP  ·  CLICK/ENTER FIRE  ·  R TRACTOR  ·  P PAUSE  ·  SWIPE←→ MOVE  ·  SWIPE↑↓ TRACTOR
+<!-- ══ HUD BOTTOM — controls hint (very subtle behind frame) ═ -->
+<text id="hud-controls" x="400" y="542" text-anchor="middle" font-family="monospace" font-size="5" fill="#1a1a1a" letter-spacing=".3">
+  ◄► MOVE · SPACE FLIP · ENTER FIRE · R TRACTOR · P PAUSE
 </text>
 
 <!-- ══ OVERLAYS (outside g-field, always on top) ════════════ -->
@@ -252,9 +260,12 @@
 
 <!-- ══ FULLSCREEN BUTTON ════════════════════════════════════ -->
 <g id="g-fullscreen-btn" style="cursor:pointer">
-  <rect x="757" y="517" width="38" height="20" rx="3" fill="rgba(0,0,0,0.75)" stroke="#334433" stroke-width="1"/>
-  <text x="776" y="531" text-anchor="middle" font-family="monospace" font-size="13" fill="#558855">⛶</text>
+  <rect x="757" y="520" width="38" height="18" rx="3" fill="rgba(0,0,0,0.75)" stroke="#334433" stroke-width="1"/>
+  <text x="776" y="533" text-anchor="middle" font-family="monospace" font-size="13" fill="#558855">⛶</text>
 </g>
+
+<!-- ══ IN-GAME HUD FRAME (overlay on top of everything) ══════ -->
+<image id="g-hud-frame" href="SVG/hud-frame-1.svg" x="0" y="0" width="800" height="544" preserveAspectRatio="none" pointer-events="none"/>
 
 <!-- ══ START SCREEN ══════════════════════════════════════════ -->
 <g id="g-overlay">
@@ -262,41 +273,28 @@
   <rect x="0" y="0" width="800" height="544" fill="url(#p-scan)" opacity=".6"/>
   <rect x="0" y="0" width="800" height="544" fill="url(#g-vig)"/>
 
-  <!-- Corner decorations -->
-  <use href="#sburst" transform="translate(58,58)"   fill="#001800" stroke="#003300" stroke-width=".5" opacity=".75"/>
-  <use href="#sburst" transform="translate(742,58)"  fill="#001800" stroke="#003300" stroke-width=".5" opacity=".75"/>
-  <use href="#sburst" transform="translate(58,486)"  fill="#001800" stroke="#003300" stroke-width=".5" opacity=".75"/>
-  <use href="#sburst" transform="translate(742,486)" fill="#001800" stroke="#003300" stroke-width=".5" opacity=".75"/>
-
-  <!-- Borders -->
-  <rect x="6"  y="6"  width="788" height="532" rx="8" fill="none" stroke="#00ff44" stroke-width="1.8" opacity=".5"/>
-  <rect x="10" y="10" width="780" height="524" rx="6" fill="none" stroke="#005522" stroke-width=".8" opacity=".6"/>
-
-  <!-- Diamond corners -->
-  <polygon points="30,18 40,28 30,38 20,28" fill="#00ff44" opacity=".4"/>
-  <polygon points="770,18 780,28 770,38 760,28" fill="#00ff44" opacity=".4"/>
-  <polygon points="30,506 40,516 30,526 20,516" fill="#00ff44" opacity=".4"/>
-  <polygon points="770,506 780,516 770,526 760,516" fill="#00ff44" opacity=".4"/>
+  <!-- HUD Frame overlay (decorative, on top of background) -->
+  <image href="SVG/hud-frame-2.svg" x="0" y="0" width="800" height="544" preserveAspectRatio="none" pointer-events="none"/>
 
   <text x="400" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#003322" letter-spacing="10">~ SUPREME EDITION ~</text>
 
   <!-- Perimeter centipede (JS-animated, rendered BEFORE logo so it passes behind it) -->
   <g id="centi-parade">
-    <g id="cp-10" opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-9"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-8"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-7"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-6"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-5"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-4"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-3"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-2"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-1"  opacity="0"><image href="centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
-    <g id="cp-0"  opacity="0"><image href="centipede-head.svg" x="-25" y="-31" width="49" height="61"/></g>
+    <g id="cp-10" opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-9"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-8"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-7"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-6"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-5"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-4"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-3"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-2"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-1"  opacity="0"><image href="SVG/centipede-seg.svg" x="-13" y="-16" width="26" height="32"/></g>
+    <g id="cp-0"  opacity="0"><image href="SVG/centipede-head.svg" x="-25" y="-31" width="49" height="61"/></g>
   </g>
 
   <!-- Title (on top of centipede so it disappears behind it) -->
-  <image href="logo.svg" x="299" y="15" width="202" height="104" id="g-title"/>
+  <image href="SVG/logo.svg" x="299" y="15" width="202" height="104" id="g-title"/>
 
   <!-- ── PANEL 1: HIGH SCORES ── -->
   <g id="panel-scores" class="panel-fade">
@@ -1579,10 +1577,10 @@ function renderHUD(){
   $('hud-hi').textContent=`HI ${String(Math.max(player.score,getHiScore())).padStart(6,'0')}`;
 
   const ep=player.energy/ENERGY_MAX;
-  $('hud-e-bar').setAttribute('width',String((ep*76).toFixed(1)));
+  $('hud-e-bar').setAttribute('width',String((ep*58).toFixed(1)));
   $('hud-e-bar').setAttribute('fill',ep<.2?'#882200':'#007744');
   const sp=player.shield/SHIELD_MAX;
-  $('hud-s-bar').setAttribute('width',String((sp*76).toFixed(1)));
+  $('hud-s-bar').setAttribute('width',String((sp*58).toFixed(1)));
   $('hud-s-bar').setAttribute('fill',sp<.25?'#aa1100':sp<.5?'#aa6600':'#2244aa');
 
   const st=$('hud-streak');st.textContent=`✕${player.streak}`;
@@ -1600,17 +1598,24 @@ function renderHUD(){
 
   // Power-up bars
   const puDefs=[
-    ['auto',powerups.autoAim,'#00ff44','#002a00','#44aa44'],
-    ['dshot',powerups.dblShot,'#ff8800','#2a1500','#aa6622'],
-    ['dual',powerups.dualCannon,'#ff2200','#2a0000','#aa2200'],
-    ['tshld',powerups.tractorShield,'#4488ff','#00001a','#2244aa'],
+    ['auto',powerups.autoAim,'#00ff44','#002a00','#44aa44',46],
+    ['dshot',powerups.dblShot,'#ff8800','#2a1500','#aa6622',46],
+    ['dual',powerups.dualCannon,'#ff2200','#2a0000','#aa2200',54],
+    ['tshld',powerups.tractorShield,'#4488ff','#00001a','#2244aa',58],
   ];
-  for(const[key,ticks,col,bgOff,txtOff]of puDefs){
+  for(const[key,ticks,col,bgOff,txtOff,maxW]of puDefs){
     const bar=$(`pu-bar-${key}`),txt=$(`pu-txt-${key}`),bg=$(`pu-bg-${key}`);
-    bar.setAttribute('width',String(Math.round(ticks/PU_TICKS*76)));
+    bar.setAttribute('width',String(Math.round(ticks/PU_TICKS*maxW)));
     bar.setAttribute('fill',col);
-    if(ticks>0){bg.setAttribute('fill',`${col}18`);txt.setAttribute('fill',col);txt.classList.add('pu-on');}
-    else{bg.setAttribute('fill',bgOff);txt.setAttribute('fill',txtOff);txt.classList.remove('pu-on');}
+    if(ticks>0){
+      bg.setAttribute('fill',`${col}18`);
+      txt.setAttribute('fill',col);
+      txt.classList.add('pu-on');
+    }else{
+      bg.setAttribute('fill',bgOff);
+      txt.setAttribute('fill',txtOff);
+      txt.classList.remove('pu-on');
+    }
   }
 
   if(paused&&!$('g-paused')){
