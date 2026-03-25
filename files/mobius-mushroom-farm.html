@@ -372,7 +372,8 @@
 <foreignObject width="0" height="0">
   <div xmlns="http://www.w3.org/1999/xhtml">
     <audio id="aud-title" src="title.mp3" loop preload="auto"/>
-    <audio id="aud-game"  src="game.mp3"  loop preload="auto"/>
+    <audio id="aud-game-even" src="Audio/Psytrain Through the Fungal Expanse-1.mp3" loop preload="auto"/>
+    <audio id="aud-game-odd"  src="Audio/Psytrain Through the Fungal Expanse-2.mp3" loop preload="auto"/>
   </div>
 </foreignObject>
 </svg>
@@ -558,6 +559,7 @@ const SFX={
 
 // MP3 music
 function playMusic(id){
+  if(!stateMusic) return;
   const a=$(id);
   if(!a)return;
   a.volume=0.35;
@@ -1045,7 +1047,11 @@ function startMobiusTransition(){
 
   // Mid-point (flip contents)
   setTimeout(()=>{
+    const oldTrack = level%2===0 ? 'aud-game-even' : 'aud-game-odd';
+    stopMusic(oldTrack);
     level++;podsThisLevel=0;
+    const newTrack = level%2===0 ? 'aud-game-even' : 'aud-game-odd';
+    playMusic(newTrack);
     centipedes.length=0;pyramids.length=0;shots.length=0;enemyShots.length=0;
     nextCenti=tick+60;nextPyramid=tick+30;
     player.energy=clamp(player.energy+25,0,ENERGY_MAX);
@@ -1742,7 +1748,7 @@ function startGame(){
   initStars();initSleepers();preloadAssets();
   reset();running=true;
   startBgDrone();
-  stopMusic('aud-title');playMusic('aud-game');
+  stopMusic('aud-title');playMusic('aud-game-odd');
   if('ontouchstart' in window||navigator.maxTouchPoints>0){
     $('g-tractor-btn').removeAttribute('display');
     $('g-drone-btn').removeAttribute('display');
@@ -1776,6 +1782,14 @@ $('btn-set-sound').addEventListener('click', () => {
 $('btn-set-music').addEventListener('click', () => {
   stateMusic = !stateMusic;
   $('txt-set-music').textContent = 'MUSIC: ' + (stateMusic ? 'ON' : 'OFF');
+  if(!stateMusic){
+    stopMusic('aud-title');
+    stopMusic('aud-game-even');
+    stopMusic('aud-game-odd');
+  } else {
+    if(running) playMusic(level%2===0 ? 'aud-game-even' : 'aud-game-odd');
+    else playMusic('aud-title');
+  }
 });
 $('btn-set-fx').addEventListener('click', () => {
   stateFX = (stateFX + 1) % 3;
