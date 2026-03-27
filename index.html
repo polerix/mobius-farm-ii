@@ -1381,7 +1381,7 @@
       function render() {
         const density = countFarmDensity();
 
-        // A fake "stability / defrag" metric:
+        // A fake "stability / defrag-tool" metric:
         // High density is good up to a point; too low = starving, too high = explosive chaos.
         const stability = clamp(100 - Math.abs(density - 55) * 2, 0, 100);
         const bar = energyBar(stability, 12);

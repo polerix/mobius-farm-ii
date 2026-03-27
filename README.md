@@ -32,7 +32,7 @@ Manage two surfaces connected by a Möbius edge. Cultivate mushrooms, defend aga
 
 ### 🐚 Economy
 - **Stability Meter**: Tracks farm density (optimal around 55%) 💧
-- **Energy**: Recharges slowly; fuels firing, defrag, shield regen 🫧
+- **Energy**: Recharges slowly; fuels firing, defrag-tool, shield regen 🫧
 - **Shield**: Absorbs damage; regenerates if you have surplus energy 🐚
 - **Pods**: Charge when energy > 45; auto-launch at 100% for score bonus 🌊
 
@@ -67,7 +67,7 @@ Edit these constants in the `<script>` section to tweak gameplay: 🐚
 - **Balance**: Too sparse = starving; too dense = chaos. Aim for ~55% density. 🫧
 - **Defense**: Focus shots on enemies before they reach your farm. 🐚
 - **Growth**: Nurturing mushrooms (shooting them early) is rewarded with resource gains. 🌊
-- **Defrag**: Use the defrag pulse strategically when you have energy surplus to reorganize your farm. 💧
+- **Defrag**: Use the defrag-tool pulse strategically when you have energy surplus to reorganize your farm. 💧
 - **Combo**: Consecutive enemy kills boost score exponentially. 🫧
 
 ## 🌊 License
