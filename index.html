@@ -751,30 +751,6 @@
       } catch (e) { }
     }
 
-    // Background drone oscillator
-    let droneosc = null, droneGain = null;
-    function startBgDrone() {
-      try {
-        const c = getACtx();
-        droneosc = c.createOscillator();
-        droneGain = c.createGain();
-        droneosc.type = 'sawtooth'; droneosc.frequency.value = 55;
-        droneGain.gain.value = 0.04;
-        droneosc.connect(droneGain); droneGain.connect(c.destination);
-        droneosc.start();
-      } catch (e) { }
-    }
-    function updateBgDrone(threatLevel) {
-      if (!droneosc) return;
-      try {
-        const c = getACtx();
-        const freq = 55 + threatLevel * 80;
-        droneosc.frequency.setTargetAtTime(freq, c.currentTime, 0.5);
-        const vol = 0.02 + threatLevel * 0.05;
-        droneGain.gain.setTargetAtTime(vol, c.currentTime, 0.5);
-      } catch (e) { }
-    }
-
     const SFX = {
       fire() { tone(880, .04, .07, 'square'); tone(660, .06, .04, 'sawtooth'); },
       fire2() { SFX.fire(); setTimeout(() => { tone(1100, .04, .05, 'square') }, 30); },
@@ -1732,9 +1708,6 @@
         player.energy = clamp(player.energy - SHIELD_REGEN * .18, 0, ENERGY_MAX);
       }
 
-      // ── Threat level for bg drone ──
-      const threat = clamp((centipedes.length + pyramids.length * 0.5) / 10, 0, 1);
-      updateBgDrone(threat);
 
       // ── Power-ups + Pods ──
       tickPowerups();
@@ -2010,7 +1983,7 @@
       $('g-overlay').style.display = 'none';
       initStars(); initSleepers(); preloadAssets();
       reset(); running = true;
-      startBgDrone();
+      // startBgDrone(); // removed — was causing unwanted buzz
       stopMusic('aud-title'); playMusic('aud-game-odd');
       if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         $('g-tractor-btn').removeAttribute('display');
