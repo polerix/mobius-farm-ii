@@ -76,3 +76,16 @@ Created as a game design prototype. Feel free to fork, mod, and share! 🐚
 
 ---
 *Be like water, my friend. It can flow or it can crash.* 🌊
+
+## Deployment & Repository Status
+
+- **Standardized Name**: `mobius-farm-II`
+- **Remote Origin**: `https://github.com/polerix/mobius-farm-ii.git`
+- **License Level**: `MIT` ([`LICENSE`](LICENSE))
+- **Security Policy**: [`SECURITY.md`](SECURITY.md)
+- **GitHub Actions**: ✅ Active
+- **Last Compliance Audit**: `2026-10-18`
+
+### GitHub CleanUp Log
+- **Unused / Archive / Cache Items Moved to `/Volumes/Clay/GitHubCleanUp/mobius-farm-II/`**: 1 item(s) (1 files, 3.03 MB)
+  - `mobiumushroomsfarm.ai` — Unreferenced Illustrator source file (1 file(s), 3.03 MB)
